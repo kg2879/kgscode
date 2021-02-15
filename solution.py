@@ -32,7 +32,7 @@ def webServer(port=13331):
             for i in range(0, len(outputdata)):
                 connectionSocket.send(outputdata[i].encode())
 
-            connectionSocket.send("\r\n".encode())
+            connectionSocket.send('\r\n\r\n'.encode())
             connectionSocket.close()
 
         except IOError:
@@ -47,7 +47,7 @@ def webServer(port=13331):
             connectionSocket.close()
             #Fill in end
 
-        #serverSocket.close()
+        serverSocket.close()
     sys.exit()  # Terminate the program after sending the corresponding data
 
 if __name__ == "__main__":
