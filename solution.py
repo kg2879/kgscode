@@ -1,31 +1,88 @@
 
-### welcome_assignment_answers
-### Input - All eight questions given in the assignment.
-### Output - The right answer for the specific question.
+from socket import *
 
-def welcome_assignment_answers(question):
-    #The student doesn't have to follow the skeleton for this assignment.
-    #Another way to implement is using a "case" statements similar to C.
-    if question == "Are encoding and encryption the same? - Yes/No":
-        answer = "No"
-    elif question == "Is it possible to decrypt a message without a key? - Yes/No":
-        answer = "No"
-    elif question == "Is it possible to decode a message without a key? - Yes/No":
-        answer = "Yes"
-    elif question == "Is a hashed message supposed to be un-hashed? - Yes/No":
-        answer = "No"
-    elif question == "What is the MD5 hashing value to the following message: 'NYU Computer Networking' - Use MD5 hash generator and use the answer in your code":
-        answer = "42b76fe51778764973077a5a94056724"
-    elif question == "Is MD5 a secured hashing algorithm? - Yes/No":
-        answer = "No"
-    elif question == "What layer from the TCP/IP model the protocol DHCP belongs to? - The answer should be a numeric number":
-        answer = int("5")
-    elif question == "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number":
-        answer = int("4")
-    return(answer)
-# Complete all the questions.
+def smtp_client(port=1025, mailserver='127.0.0.1'):
+    msg = "\r\n My message kg2879"
+    endmsg = "\r\n.\r\n"
 
-if __name__ == "__main__":
-    #use this space to debug and verify that the program works
-    debug_question = "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number"
-    print(welcome_assignment_answers(debug_question))
+    # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
+
+    # Create socket called clientSocket and establish a TCP connection with mailserver and port
+
+    # Fill in start
+    mailservernyu = ("smtp.nyu.edu", 25)
+    clientSocket = socket(AF_INET, SOCK_STREAM)
+    clientSocket.connect(mailservernyu)
+    # Fill in end
+
+    recv = clientSocket.recv(1024).decode()
+    #print(recv)
+    #if recv[:3] != '220':
+        #print('220 reply not received from server Test1.')
+
+    # Send HELO command and print server response.
+    heloCommand = 'HELO Alice\r\n'
+    clientSocket.send(heloCommand.encode())
+    recv1 = clientSocket.recv(1024).decode()
+    #print(recv1)
+    #if recv1[:3] != '250':
+        #print('250 reply not received from server Test2.')
+
+    # Send MAIL FROM command and print server response.
+    # Fill in start
+    fromMail = "MAIL FROM: <kg2879@nyu.edu> \r\n"
+    clientSocket.send(fromMail.encode())
+    recv2 = clientSocket.recv(1024).decode()
+    #print("MAIL FROM : " + recv2)
+    #if recv2[:3] != '250':
+        #print('250 reply not received from server Test3.')
+    # Fill in end
+
+    # Send RCPT TO command and print server response.
+    # Fill in start
+    toMail = "RCPT TO: <kg2879@nyu.edu> \r\n"
+    clientSocket.send(toMail.encode())
+    recv3 = clientSocket.recv(1024).decode()
+    #print("RCPT TO : " + recv3)
+    #if recv3[:3] != '250':
+        #print('250 reply not received from server Test4.')
+    # Fill in end
+
+    # Send DATA command and print server response.
+    # Fill in start
+    dataCmd = "DATA\r\n"
+    clientSocket.send(dataCmd.encode())
+    recv4 = clientSocket.recv(1024).decode()
+    #print("After DATA command: " + recv4)
+    #if recv4[:3] != '354':
+        #print('354 reply not received from server Test5.')
+    # Fill in end
+
+    # Send message data.
+    # Fill in start
+    subject = "Subject: SMTP Mail Programming Lab 3 \r\n\r\n"
+    clientSocket.send(subject.encode())
+    clientSocket.send(msg.encode())
+    # Fill in end
+
+    # Message ends with a single period.
+    # Fill in start
+    clientSocket.send(endmsg.encode())
+    recv5 = clientSocket.recv(1024).decode()
+    #print("Response after sending message body:" + recv5)
+    #if recv5[:3] != '250':
+        #print('250 reply not received from server Test6.')
+    # Fill in end
+
+    # Send QUIT command and get server response.
+    # Fill in start
+    quitMail = "QUIT\r\n"
+    clientSocket.send(quitMail.encode())
+    recv6 = clientSocket.recv(1024).decode()
+    #print(recv6)
+    clientSocket.close()
+    # Fill in end
+
+
+if __name__ == '__main__':
+    smtp_client(1025, '127.0.0.1')
