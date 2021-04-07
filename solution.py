@@ -158,10 +158,10 @@ def ping(host, timeout=1):
     #print('--- {} ping statistics ---'.format(host))
     #print('{} packets transmitted, {} packets received, {:.1f}% packet loss'.format(count, rttCount,100.0 - rttCount * 100.0 / count))
 
-    vars = [str(round(rttMin, 2)), str(round(rttSum / rttCount, 2)), str(round(rttMax, 2)), str(round(statistics.stdev(rttArray), 2))]
-    if rttCount != 0:
+    vars = [round(rttMin, 2), round(rttSum / rttCount, 2),round(rttMax, 2), round(statistics.stdev(rttArray), 2)]
+    #if rttCount != 0:
         #print('round-trip min/avg/max/stddev = {:.4f}/{:.4f}/{:.4f}/{:.4f} ms'.format(rttMin, rttSum / rttCount, rttMax, statistics.stdev(rttArray)))
-        return vars
+    return vars
 
 if __name__ == '__main__':
     ping("google.co.il")
