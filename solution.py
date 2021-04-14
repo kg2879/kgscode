@@ -192,6 +192,6 @@ def get_route(hostname):
                 #print(tracelist2)
                 mySocket.close()
         tracelist2.append(tracelist1)
-    #return tracelist2
-    print(tracelist2)
+    return tracelist2
+    #print(tracelist2)
 get_route("www.google.com")
