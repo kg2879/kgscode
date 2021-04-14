@@ -141,14 +141,10 @@ def get_route(hostname):
                 try: #try to fetch the hostname
                     #Fill in start
                     hostAddress = gethostbyaddr(hostIP)
-                    #tracelist1.append(addr[0])
-                    #tracelist2.append(tracelist1)
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    #tracelist1.append("hostname not returnable")
                     nohostaddress = True
-                    #tracelist2.append(tracelist1)
                     #Fill in end
 
 
@@ -163,9 +159,6 @@ def get_route(hostname):
                          tracelist1.append(str(hostAddress[0]))
                     else:
                         tracelist1.append("hostname not returnable")
-                    #tracelist2.append(tracelist1)addr[0]
-                    #print(tracelist2)
-                    #print(" %d  %d   %.0fms %s %s " % (numHops, ttlive, (timeReceived - t) * 1000, addr[0], format(hostAddress)))
                     #You should add your responses to your lists here
                     #Fill in end
                 elif request_type == 3:
@@ -176,9 +169,6 @@ def get_route(hostname):
                     tracelist1.append(str(ttlive) + "ms")
                     tracelist1.append(str(hostIP))
                     tracelist1.append(str(hostAddress[0]))
-                    #tracelist2.append(tracelist1)
-                    #print(tracelist2)
-                    #print(" %d  %d   %.0fms %s %s " % (numHops, ttlive, (timeReceived - t) * 1000, addr[0], format(hostAddress)))
                     #You should add your responses to your lists here
                     #Fill in end
                 elif request_type == 0:
@@ -189,10 +179,6 @@ def get_route(hostname):
                     tracelist1.append(str(ttlive) + "ms")
                     tracelist1.append(str(hostIP))
                     tracelist1.append(str(hostAddress[0]))
-                    #tracelist2.append(tracelist1)
-                    #print(tracelist2)
-                    #print(" %d  %d   %.0fms %s %s " % (numHops, ttlive, (timeReceived - t) * 1000, addr[0], format(hostAddress)))
-                    #exit()
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     #Fill in end
                 else:
@@ -206,6 +192,6 @@ def get_route(hostname):
                 #print(tracelist2)
                 mySocket.close()
         tracelist2.append(tracelist1)
-    return tracelist2
-    #print(tracelist2)
+    #return tracelist2
+    print(tracelist2)
 get_route("www.google.com")
