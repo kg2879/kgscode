@@ -156,11 +156,11 @@ def get_route(hostname):
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    tracelist1.append(numHops)
+                    tracelist1.append(str(numHops))
                     tracelist1.append(str(ttlive) + "ms")
-                    tracelist1.append(hostIP)
+                    tracelist1.append(str(hostIP))
                     if (not nohostaddress):
-                         tracelist1.append(hostAddress[0])
+                         tracelist1.append(str(hostAddress[0]))
                     else:
                         tracelist1.append("hostname not returnable")
                     #tracelist2.append(tracelist1)addr[0]
@@ -172,10 +172,10 @@ def get_route(hostname):
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    tracelist1.append(numHops)
+                    tracelist1.append(str(numHops))
                     tracelist1.append(str(ttlive) + "ms")
-                    tracelist1.append(hostIP)
-                    tracelist1.append(hostAddress[0])
+                    tracelist1.append(str(hostIP))
+                    tracelist1.append(str(hostAddress[0]))
                     #tracelist2.append(tracelist1)
                     #print(tracelist2)
                     #print(" %d  %d   %.0fms %s %s " % (numHops, ttlive, (timeReceived - t) * 1000, addr[0], format(hostAddress)))
@@ -185,10 +185,10 @@ def get_route(hostname):
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    tracelist1.append(numHops)
+                    tracelist1.append(str(numHops))
                     tracelist1.append(str(ttlive) + "ms")
-                    tracelist1.append(hostIP)
-                    tracelist1.append(hostAddress[0])
+                    tracelist1.append(str(hostIP))
+                    tracelist1.append(str(hostAddress[0]))
                     #tracelist2.append(tracelist1)
                     #print(tracelist2)
                     #print(" %d  %d   %.0fms %s %s " % (numHops, ttlive, (timeReceived - t) * 1000, addr[0], format(hostAddress)))
@@ -206,5 +206,6 @@ def get_route(hostname):
                 #print(tracelist2)
                 mySocket.close()
         tracelist2.append(tracelist1)
-    return tracelist2
+    #return tracelist2
+    print(tracelist2)
 get_route("www.google.com")
